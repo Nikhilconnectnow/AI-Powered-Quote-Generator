@@ -11,13 +11,13 @@ An AI-powered web app to generate unique, inspiring quotes dynamically based on 
 - ✅ **AI-Generated Quotes** — Get fresh quotes dynamically using OpenAI  
 - ✅ **Category / Mood Selector** — Choose from Motivational, Romantic, Success & more  
 - 🌟 **Save Favorite Quotes** — Bookmark your favorite quotes (saved in MongoDB)  
-- 🌟 **Social Share** — Share quotes on WhatsApp, Twitter, etc.  
+<!-- - 🌟 **Social Share** — Share quotes on WhatsApp, Twitter, etc.   -->
 - 🌟 **Quote of the Day** — Automatically generated daily quote  
 - 🌟 **User Input Topic** — Generate quotes on custom topics  
-- 🌟 **Multi-language Support** — Generate quotes in different languages  
-- 🌟 **Dark / Light Mode** — Smooth theme toggle  
+<!-- - 🌟 **Multi-language Support** — Generate quotes in different languages   -->
+<!-- - 🌟 **Dark / Light Mode** — Smooth theme toggle   -->
 - 🌟 **Copy to Clipboard** — One-click copy feature  
-- 🌟 **Download as Image** — Download beautiful quote images  
+<!-- - 🌟 **Download as Image** — Download beautiful quote images   -->
 
 ---
 
@@ -58,8 +58,11 @@ npm install
 3️⃣ **Setup Environment Variables (`server/.env`)**
 
 ```
-OPENAI_API_KEY=sk-your-openai-api-key
-MONGODB_URI=your-mongodb-uri
+MONGO_URI=mongodb://localhost:27017/yourdbname
+JWT_SECRET=your_jwt_secret
+GOOGLE_GENAI_API_KEY=AIzaSy....
+EMAIL=youremail@gmail.com
+EMAIL_PASSWORD=your_email_password
 ```
 
 4️⃣ **Run Backend**
