@@ -827,7 +827,7 @@ const AuthUI = () => {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-[55%] -translate-y-1/2 text-[#636e72] hover:text-[#6366f1] transition-colors"
+                    className="absolute right-4 top-[70%] -translate-y-1/2 text-[#636e72] hover:text-[#6366f1] transition-colors"
                   >
                     {showPassword ? <FaEye /> : <FaEyeSlash />}
                   </button>
@@ -878,7 +878,7 @@ const AuthUI = () => {
                   <button
                     type="button"
                     onClick={() => setShowLoginPassword(!showLoginPassword)}
-                    className="absolute right-4 top-[55%] -translate-y-1/2 text-[#636e72] hover:text-[#6366f1] transition-colors"
+                    className="absolute right-4 top-[70%] -translate-y-1/2 text-[#636e72] hover:text-[#6366f1] transition-colors"
                   >
                     {showLoginPassword ? <FaEye /> : <FaEyeSlash />}
                   </button>
