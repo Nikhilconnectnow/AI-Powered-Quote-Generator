@@ -4,6 +4,8 @@ import '../App.css';
 import { FaQuoteLeft, FaHeart, FaUser, FaCog, FaSignOutAlt, FaMagic, FaChevronLeft, FaChevronRight, FaCopy, FaTrash } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // Assume userId and auth functions are passed as props (from auth context or parent)
 const Quotify = ({ userIdProp, onLogout = () => {} }) => {
@@ -129,28 +131,60 @@ const removeFavorite = async (favoriteId) => {
   }
 };
 
-  const handleDeleteAccount = async () => {
-    const confirmed = window.confirm("Are you sure you want to delete your account?");
-    if (!confirmed) return;
+  // const handleDeleteAccount = async () => {
+  //   const confirmed = window.confirm("Are you sure you want to delete your account?");
+  //   if (!confirmed) return;
 
-    try {
-      const res = await fetch('/api/user/deleteuser', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId }),
-      });
+  //   try {
+  //     const res = await fetch('/api/user/deleteuser', {
+  //       method: 'DELETE',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({ userId }),
+  //     });
 
-      if (!res.ok) throw new Error('Failed to delete account');
+  //     if (!res.ok) throw new Error('Failed to delete account');
 
-      toast.success('Account deleted successfully');
-      localStorage.removeItem('userId');
-      navigate('/'); // Redirect to login page
-    } catch (err) {
-      console.error('Delete account error:', err);
-      toast.error('Failed to delete account');
-    }
-  };
+  //     toast.success('Account deleted successfully');
+  //     localStorage.removeItem('userId');
+  //     navigate('/'); // Redirect to login page
+  //   } catch (err) {
+  //     console.error('Delete account error:', err);
+  //     toast.error('Failed to delete account');
+  //   }
+  // };
+const handleDeleteAccount = () => {
+  confirmAlert({
+    title: 'Confirm Deletion',
+    message: 'Are you sure you want to delete your account?',
+    buttons: [
+      {
+        label: 'Yes',
+        onClick: async () => {
+          try {
+            const res = await fetch('/api/user/deleteuser', {
+              method: 'DELETE',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ userId }),
+            });
 
+            if (!res.ok) throw new Error('Failed to delete account');
+
+            toast.success('Account deleted successfully');
+            localStorage.removeItem('userId');
+            navigate('/');
+          } catch (err) {
+            console.error('Delete account error:', err);
+            toast.error('Failed to delete account');
+          }
+        }
+      },
+      {
+        label: 'No',
+        onClick: () => console.log('Deletion cancelled')
+      }
+    ]
+  });
+};
   const generateQuotes = async () => {
     if (!topic.trim()) {
       toast.warning('Please enter a topic');
@@ -357,10 +391,10 @@ const removeFavorite = async (favoriteId) => {
             {showDropdown && (
               <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl p-2 z-10">
                 <div className="flex items-center gap-3 p-3 border-b">
-                  <div>
-                    <p className="font-semibold">{username}</p>
-                    <p className="text-sm text-gray-500">{email}</p>
-                  </div>
+                  <div className="max-w-xs truncate">
+  <p className="font-semibold">{username}</p>
+  <p className="text-sm text-gray-500 truncate">{email}</p>
+</div>
                 </div>
                 <button className="w-full flex items-center gap-2 p-2 hover:bg-gray-100 rounded-lg text-red-600"
                   onClick={handleDeleteAccount}>
@@ -404,7 +438,7 @@ const removeFavorite = async (favoriteId) => {
               onChange={e => setQuoteCount(Number(e.target.value))} 
               className="p-3 border-2 rounded-lg focus:border-indigo-500 focus:outline-none transition-colors"
             >
-              {[1,2,3,4,5].map(num => (
+              {[1,3,5,7,10].map(num => (
                 <option key={num} value={num}>{num} Quote{num>1?'s':''}</option>
               ))}
             </select>
