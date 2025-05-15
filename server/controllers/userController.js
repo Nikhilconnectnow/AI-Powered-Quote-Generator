@@ -161,15 +161,35 @@ const forgotPassword = async (req, res) => {
 
     res.status(200).json({ message: "Reset password email sent" });
   } catch (error) {
+    console.error("Forgot Password Error:", error);
     res.status(500).json({ message: "Error sending reset password email" });
   }
 };
 
 // Reset Password
 const resetPassword = async (req, res) => {
+  // try {
+  //   const { token } = req.params;
+  //   const { password } = req.body;
+  //   const decoded = jwt.verify(token, JWT_SECRET);
+
+  //   const hashedPassword = await bcrypt.hash(password, 10);
+  //   await User.findByIdAndUpdate(decoded.userId, { password: hashedPassword });
+
+  //   res.status(200).json({ message: "Password reset successfully" });
+  // } catch (error) {
+  //   res.status(500).json({ message: "Invalid or expired token" });
+  // }
+
   try {
-    const { token } = req.params;
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ message: 'No token provided' });
+    }
+
+    const token = authHeader.split(' ')[1]; // Bearer <token>
     const { password } = req.body;
+
     const decoded = jwt.verify(token, JWT_SECRET);
 
     const hashedPassword = await bcrypt.hash(password, 10);

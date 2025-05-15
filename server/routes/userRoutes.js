@@ -15,7 +15,10 @@ const { registerUser, loginUser, forgotPassword, resetPassword ,getUserDetails ,
 router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.post('/forgot-password', forgotPassword);
-router.post('/reset-password/:token', resetPassword);
+// router.post('/reset-password/:token', resetPassword);
+router.post('/reset-password', resetPassword);
+
+
 router.delete('/deleteuser', deleteUser); 
 router.get('/getuserdetails',getUserDetails)         
 router.post('/logout', logoutUser);  
