@@ -1256,7 +1256,7 @@ const AuthUI = () => {
         {/* Left Section */}
         <div className="relative flex-1 p-16 bg-gradient-to-r from-[#ee7752] via-[#e73c7e] to-[#23a6d5] animate-gradient-flow">
           <div className="relative z-10 text-center animate-float">
-            <h2 className="text-[2.5rem] text-white mb-4 drop-shadow-md">Quote of the Day</h2>
+            <h2 className="text-[3.0rem] font-extrabold text-white mb-4 drop-shadow-md">Quote of the Day</h2>
             <p className="text-lg text-white/90 leading-relaxed font-medium">
               "{quote}"
             </p>
