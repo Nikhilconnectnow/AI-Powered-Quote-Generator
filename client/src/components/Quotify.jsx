@@ -7,7 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+// const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 
 // Assume userId and auth functions are passed as props (from auth context or parent)
 const Quotify = ({ userIdProp, onLogout = () => {} }) => {
