@@ -150,7 +150,10 @@ const forgotPassword = async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
 
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '15m' });
-    const url = `http://localhost:5173/reset-password?token=${token}`;
+    // const url = `http://localhost:5173/reset-password?token=${token}`;
+    const url =`${process.env.CLIENT_URL}/reset-password?token=${token}`;
+
+
 
     await transporter.sendMail({
       from: process.env.EMAIL,
