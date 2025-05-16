@@ -1179,7 +1179,7 @@ const AuthUI = () => {
       switch (type) {
         case 'signup':
           // url = 'http://localhost:5000/api/user/register';
-          `${BASE_URL}/api/user/register`;
+          url=`${BASE_URL}/api/user/register`;
           body = {
             name: formData.name,
             email: formData.email,
