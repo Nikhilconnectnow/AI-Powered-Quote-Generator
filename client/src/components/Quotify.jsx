@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
+const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 // Assume userId and auth functions are passed as props (from auth context or parent)
 const Quotify = ({ userIdProp, onLogout = () => {} }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -36,7 +38,7 @@ const Quotify = ({ userIdProp, onLogout = () => {} }) => {
 
   const fetchUserInfo = async () => {
     try {
-      const res = await fetch(`/api/user/getuserdetails?userId=${userId}`);
+      const res = await fetch(`${BASE_URL}/api/user/getuserdetails?userId=${userId}`);
       
       if (!res.ok) throw new Error('Failed to fetch user info');
       const data = await res.json();
@@ -54,7 +56,7 @@ const Quotify = ({ userIdProp, onLogout = () => {} }) => {
 
   const fetchFavorites = async () => {
     try {
-      const res = await fetch(`/api/quote/getfavorites?userId=${userId}`);
+      const res = await fetch(`${BASE_URL}/api/quote/getfavorites?userId=${userId}`);
       
       if (!res.ok) throw new Error('Failed to fetch favorites');
       const data = await res.json();
@@ -76,7 +78,7 @@ const Quotify = ({ userIdProp, onLogout = () => {} }) => {
         return;
       }
       
-      const res = await fetch('/api/quote/addfavorite', {
+      const res = await fetch(`${BASE_URL}/api/quote/addfavorite`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -115,7 +117,7 @@ const Quotify = ({ userIdProp, onLogout = () => {} }) => {
   // };
 const removeFavorite = async (favoriteId) => {
   try {
-    const res = await fetch(`/api/quote/favorite/${favoriteId}?userId=${userId}`, {
+    const res = await fetch(`${BASE_URL}/api/quote/favorite/${favoriteId}?userId=${userId}`, {
       method: 'DELETE',
     });
 
@@ -161,7 +163,7 @@ const handleDeleteAccount = () => {
         label: 'Yes',
         onClick: async () => {
           try {
-            const res = await fetch('/api/user/deleteuser', {
+            const res = await fetch(`${BASE_URL}/api/user/deleteuser`, {
               method: 'DELETE',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ userId }),
@@ -194,7 +196,7 @@ const handleDeleteAccount = () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/quote/generate', {
+      const res = await fetch(`${BASE_URL}/api/quote/generate`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -347,7 +349,7 @@ const handleDeleteAccount = () => {
   
   const handleLogout = async () => {
     try {
-      await fetch('/api/user/logout', {
+     await fetch(`${BASE_URL}/api/user/logout`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },

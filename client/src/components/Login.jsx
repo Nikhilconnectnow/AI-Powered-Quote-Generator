@@ -896,6 +896,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
+const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const AuthUI = () => {
   const [activeForm, setActiveForm] = useState('signup');
   const [showPassword, setShowPassword] = useState(false);
@@ -942,7 +945,8 @@ const AuthUI = () => {
   useEffect(() => {
     const fetchQuote = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/quote/quote-of-the-day');
+        // const response = await fetch('http://localhost:5000/api/quote/quote-of-the-day');
+        const response = await fetch(`${BASE_URL}/api/quote/quote-of-the-day`);
         const data = await response.json();
         
         setQuote(data.quoteOfTheDay || "Design is not just what it looks like and feels like. Design is how it works.");
@@ -1172,7 +1176,8 @@ const AuthUI = () => {
       let url, body, headers = { 'Content-Type': 'application/json' };
       switch (type) {
         case 'signup':
-          url = 'http://localhost:5000/api/user/register';
+          // url = 'http://localhost:5000/api/user/register';
+          `${BASE_URL}/api/user/register`;
           body = {
             name: formData.name,
             email: formData.email,
@@ -1180,18 +1185,21 @@ const AuthUI = () => {
           };
           break;
         case 'login':
-          url = 'http://localhost:5000/api/user/login';
+          // url = 'http://localhost:5000/api/user/login';
+          url = `${BASE_URL}/api/user/login`;
           body = {
             email: formData.loginEmail,
             password: formData.loginPassword
           };
           break;
         case 'forgot':
-          url = 'http://localhost:5000/api/user/forgot-password';
+          // url = 'http://localhost:5000/api/user/forgot-password';
+          url = `${BASE_URL}/api/user/forgot-password`;
           body = { email: formData.resetEmail };
           break;
         case 'resetPassword':
-          url = 'http://localhost:5000/api/user/reset-password';
+          // url = 'http://localhost:5000/api/user/reset-password';
+          url = `${BASE_URL}/api/user/reset-password`;
           body = { password: formData.newPassword };
           const token = localStorage.getItem('resetToken');
           headers['Authorization'] = `Bearer ${token}`;
