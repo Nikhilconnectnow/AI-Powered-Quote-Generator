@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const connectDB = require('./config/db'); // db.js ko sahi jagah shift karke import
+const helmet = require('helmet');
+const compression = require('compression');
 
 // Routes
 const userRoutes = require('./routes/userRoutes');
@@ -12,7 +14,13 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(helmet());
+app.use(cors({
+  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  credentials: true
+}));
+app.use(compression());
+
 
 // Routes
 app.use('/api/user', userRoutes);
