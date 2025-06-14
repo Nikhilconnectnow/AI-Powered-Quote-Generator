@@ -17,7 +17,7 @@ An AI-powered web app to generate unique, inspiring quotes dynamically based on 
 <!-- - 🌟 **Multi-language Support** — Generate quotes in different languages   -->
 <!-- - 🌟 **Dark / Light Mode** — Smooth theme toggle   -->
 - 🌟 **Copy to Clipboard** — One-click copy feature  
-<!-- - 🌟 **Download as Image** — Download beautiful quote images   -->
+- 🌟 **Download as Image** — Download beautiful quote images  
 
 ---
 
@@ -35,8 +35,8 @@ An AI-powered web app to generate unique, inspiring quotes dynamically based on 
 
 ## 🚀 Live Demo
 
-> **[🌐 Live App Link](https://inspireai.vercel.app)**  
-*(Coming Soon…)*
+> **[🌐 Live App Link](https://ai-powered-quote-generator-six.vercel.app/)**  
+
 
 ---
 
@@ -85,7 +85,7 @@ npm start
 
 ## 🖼️ Screenshots
 
-| AI Generated Quote  | Category Selector   | Dark Mode           |
+| AI Generated Quote  | Category Selector   | Image generation    |
 | ------------------- | ------------------- | ------------------- |
 | *(screenshot here)* | *(screenshot here)* | *(screenshot here)* |
 
