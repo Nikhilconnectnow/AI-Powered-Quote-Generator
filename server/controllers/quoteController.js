@@ -414,7 +414,7 @@ const generateQuote = async (req, res) => {
 
     const prompt = `Generate ${total} inspirational quotes that are about "${topic}" and fall under the category "${category}". Return ONLY a JSON array like ["quote1", "quote2"] with no other text.`;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });  // ✅ Correct method
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });  // ✅ Correct method
     const result = await model.generateContent(prompt);
 
     const responseText = result.response.text();  // ✅ Correct way to get text
@@ -440,7 +440,7 @@ const getQuoteOfTheDay = async (req, res) => {
   try {
     const prompt = `Give 1 inspirational quote of the day. Return ONLY a JSON array like ["quote"] with no other text.`;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
     const result = await model.generateContent(prompt);
 
     let responseText = result.response.text();
